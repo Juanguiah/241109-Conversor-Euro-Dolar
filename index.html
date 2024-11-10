@@ -57,7 +57,7 @@
 
                     // Mostrar el resultado en la página
                     const dataContainer = document.getElementById('respuesta-api');
-                    dataContainer.innerHTML = `El valor en USD es: ${valorConvertido.toFixed(2)} y la tasa de cambio del día es ${valorConvertido}`;
+                    dataContainer.innerHTML = `El valor en USD es: ${valorConvertido.toFixed(2)} y la tasa de cambio del día es ${tasaCambio}`;
                 })
                 .catch(error => console.log(error));
         }
