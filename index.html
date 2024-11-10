@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EURO/DOLAR</title>
+
+    </head>
+<body>
+    <h1>Convertidor de Monedas</h1>
+
+    <input type="text" id="item" placeholder="Ingrese valor en EURO"/>
+    <button type="button" onclick="agregarItem()">Agregar</button>
+    
+    <div id="respuesta-api"></div> 
+
+    <script>
+        function agregarItem() {
+            // Obtener el valor del input
+            const valorIngresado = document.getElementById("item").value;
+
+            // Convertir el valor ingresado a número
+            const variableAlmacenada = parseFloat(valorIngresado);
+
+            // Validar que el valor ingresado sea un número
+            if (isNaN(variableAlmacenada)) {
+                alert("Por favor, ingrese un valor numérico.");
+                return;
+            }
+            
+            // Limpiar el campo de entrada
+            document.getElementById("item").value = "";
+
+            // Llamar a la función para obtener la tasa de cambio y calcular
+            fetchData('https://api.frankfurter.app/latest?base=EUR', variableAlmacenada);
+
+            
+        }
+        // Función para llamar a la API y calcular el valor en USD
+        function fetchData(url, euros) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al cargar los datos');
+                    }
+                    return response.json();
+                })
+                .then(response => {
+                    console.log("Respuesta de la API:", response);
+                    
+                    // Obtener la tasa de cambio de EUR a USD
+                    const tasaCambio = response.rates.USD;
+
+                    // Calcular el valor convertido
+                    const valorConvertido = euros * tasaCambio;
+
+                    // Mostrar el resultado en la página
+                    const dataContainer = document.getElementById('respuesta-api');
+                    dataContainer.innerHTML = `El valor en USD es: ${valorConvertido.toFixed(2)} y la tasa de cambio del día es ${valorConvertido}`;
+                })
+                .catch(error => console.log(error));
+        }
+    </script>
+</body>
+</html>

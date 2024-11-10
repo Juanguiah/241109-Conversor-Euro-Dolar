@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almacenar valor ingresado en una variable</title>
+
+    
+</head>
+<body>
+    <h1>Ingrese valor a almacenar</h1>
+
+    <input type="text" id="item" placeholder="Ingrese valor"/>
+    <button type="button" onclick="agregarItem()">Agregar</button>
+
+    <script>
+        function agregarItem() {
+            // Obtener el valor del input
+            const valorIngresado = document.getElementById("item").value;
+            
+            // Almacenar el valor en una variable
+            let variableAlmacenada = valorIngresado;
+
+            // Mostrar el valor almacenado en la consola
+            console.log("Valor almacenado:", variableAlmacenada);
+
+            // Limpiar el campo de entrada después de almacenar el valor
+            document.getElementById("item").value = "";
+
+            // Aquí puedes hacer cualquier otra cosa con `variableAlmacenada`
+        }
+    </script>
+</body>
+</html>
